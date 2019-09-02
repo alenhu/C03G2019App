@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { resolve } from 'path';
 import { readFileSync } from 'fs';
+import glob from 'glob';
 import {
   assign,
   map
@@ -13,7 +14,17 @@ import {
 import gulpConfig from './config.gulpfile';
 
 const { dir } = gulpConfig;
-
+const PAGE_PATH = resolve(__dirname, '../app/framework');
+function entries() {
+  const entryFiles = glob.sync(`${PAGE_PATH }/*/*.js`);
+  const map = {};
+  entryFiles.forEach((filePath) => {
+    const filename = filePath.substring(filePath.lastIndexOf('\/') + 1, filePath.lastIndexOf('.'));
+    map[filename] = filePath;
+  });
+  console.log('entrier ', map);
+  return map;
+}
 export default (isDev) => {
   const eslintLoader = {
     loader: 'eslint-loader',
@@ -32,9 +43,10 @@ export default (isDev) => {
   return {
     externals: {
     },
-    entry: {
-      app: [resolve(__dirname, `../${dir.frontend}`)]
-    },
+    entry: entries,
+    // {
+    //   // app: [resolve(__dirname, `../${dir.frontend}`)]
+    // },
     output: {
       path: resolve(__dirname, `../${dir.distPkg}/${dir.frontend}`),
       publicPath: '/',

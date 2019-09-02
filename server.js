@@ -5,10 +5,10 @@ import { isEmpty } from 'lodash';
 import config from './lib/config';
 import log4js from './lib/config/log4js';
 import koa from './lib/config/koa';
-import mongoose from './lib/config/mongoose-client';
+// import mongoose from './lib/config/mongoose-client';
 import redis from './lib/config/redis-client';
 
-import { setModels } from './lib/models';
+// import { setModels } from './lib/models';
 
 import {
   getLogger,
@@ -23,7 +23,7 @@ const logger = getLogger(__filename);
 const app = koa(config);
 
 // Mongoose
-const mongooseClient = mongoose(config.mongo);
+// const mongooseClient = mongoose(config.mongo);
 
 // Redis
 const redisClient = redis(config.redis);
@@ -56,18 +56,18 @@ async function createServer() {
           reject(err);
         });
       }),
-      mongooseClient.promise,
+      // mongooseClient.promise,
       redisClient.promise
     ]);
 
     // Models
-    setModels(mongooseClient, redisClient);
+    // setModels(mongooseClient, redisClient);
 
     // Routes
     (await import('./lib/route')).default(app);
 
     // Schdules
-    (await import('./lib/schedule')).default(config);
+    // (await import('./lib/schedule')).default(config);
 
     logger.info(`${upperCamelCase(config.app.name)} start successfully`);
 

@@ -1,0 +1,32 @@
+<template>
+  <div id="app">
+    <router-view/>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'App'
+};
+</script>
+
+<style>
+html,body{
+    margin:0;
+    padding:0;
+    height:100%
+}
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  width: 100%;
+  height: 100%;
+  /* background-image: url('../../../static/default_bg.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -moz-background-size:100% 100%; */
+}
+</style>
