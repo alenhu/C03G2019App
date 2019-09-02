@@ -1,0 +1,105 @@
+//
+// 通用工具辅助类样式
+//
+
+.cursor
+  &-pointer
+    cursor: pointer
+
+.text
+  &-ellipsis
+    overflow: ellipsis
+  &-warning
+    color: $brand-warning !important
+  &-success
+    color: $brand-success
+  &-yellow
+    color: #efd602
+  &-indent
+    text-indent: 2em
+  &-left
+    text-align: left !important
+
+.bg
+  &-white
+    background: $white
+  &-primary
+    color: $white
+    bg-variant($brand-primary)
+  &-success
+    color: $white
+    bg-variant($brand-success)
+  &-info
+    color: $white
+    bg-variant($brand-info)
+  &-warning
+    color: $white
+    bg-variant($brand-warning)
+  &-danger
+    color: $white
+    bg-variant($brand-danger)
+
+.border
+  border: 1px solid $gray-lighter
+  &-bottom-trans
+    border-bottom-color: transparent !important
+
+.padding
+  padding: 15px
+  &-left
+    padding-left: 15px
+
+.bold
+  font-weight: bold
+
+.no
+  &-margin
+    margin: 0 !important
+    &-bottom
+      margin-bottom: 0
+  &-padding
+    padding: 0 !important
+    &-bottom
+      padding-bottom: 0
+
+  &-bg
+    background: transparent !important
+
+.fa.circle
+  $circle-width = 24px
+  color: $white
+  background: $brand-success
+  size($circle-width)
+  line-height: $circle-width
+  -webkit-border-radius: 100%
+  border-radius: 100%
+  text-align: center
+  float: left
+  font-size: 12px
+  margin: 0 10px
+
+.cover
+  .wrap
+    height: 170px
+    width: 200px
+    border: 1px solid $table-border-color
+
+.btn-link
+  &:hover
+    transform: scale(1.2)
+
+.text
+  &-content
+    white-space: pre-wrap
+    word-break: break-all
+    overflow: hidden
+
+.flex
+  display: flex
+  &-1
+    flex: 1
+
+.inline-block
+  display: inline-block
+.auto-width
+  width: auto;

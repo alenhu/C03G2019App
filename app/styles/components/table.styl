@@ -1,0 +1,134 @@
+$icon-path = 'assets/icons/'
+$icons = card finance message mobile mobilebank ebank telephone wechat
+general-icon()
+  for icon in $icons
+    &-{icon}
+      background-image: url($icon-path + icon + '.png')
+      &.active
+        background-image: url($icon-path + icon + '-active.png')
+
+.table
+  font-size: 14px
+  margin: 0
+  > thead
+    background: $white
+    > tr > th
+      vertical-align: middle
+
+  .header
+    .title
+      font-weight: bold
+      margin-bottom: 0
+    > td
+      vertical-align: bottom
+      border-top: 0
+
+  &-white
+    background: $white
+    margin: 10px 0
+    > tbody > tr > td
+    > thead > tr > th
+      vertical-align: middle
+      &:first-child
+        border-left-color: transparent
+      &:last-child
+        border-right-color: transparent
+    > tbody > tr
+      > td
+        padding: 10px
+      &:first-child
+        > td
+          border-top-color: transparent
+      &:last-child
+        > td
+          border-bottom-color: transparent
+
+      &.selected
+        color: $brand-success
+        > td
+          $caret-size = 8px
+          border: 1px solid $brand-success
+          position: relative
+          &:after
+            content: ''
+            position: absolute
+            top: 50%
+            right: -(2 * $caret-size)
+            transform: translate(0, -50%)
+            border: $caret-size solid transparent
+            border-left-color: $brand-success
+
+  &-border-harf
+    > tbody > tr > td
+    > thead > tr > th
+      vertical-align: middle
+      &:not(:last-child)
+        border-right: 1px solid $table-border-color
+    > tbody > tr
+      &:last-child
+        > td
+          border-bottom: 1px solid $table-border-color
+
+  .td-icon
+    height: 26px
+    background-size: contain
+    background-repeat: no-repeat
+    background-position: center
+    @media(min-width: $screen-xs-max)
+      height: 36px
+
+    general-icon()
+
+.td
+  &-link
+    position: relative
+    padding-left: 15px
+    display: block
+    &:before
+      content: ''
+      position: absolute
+      top: 50%
+      left: 0
+      transform: translate(0, -50%)
+      border: 2px solid $brand-info
+      border-radius: 100%
+  &-item
+    &-container
+      padding: 0 5px !important
+    width: 30.3%
+    padding: 5px 0
+    .td-badge
+      font-size: 12px
+    @media(min-width: $screen-xs-max)
+      width: 16.6%
+  &-mark
+    $mark-color = darken($table-border-color, 20%)
+    color: $mark-color
+    border: 1px solid $mark-color
+    border-radius: 4px
+    font-size: 10px
+    padding: 0 6px
+    padding-top: 2px
+    margin: 2px 5px
+    display: inline-block
+    &.text-danger
+      border-color: $brand-danger
+      color: $brand-danger
+    &.text-warning
+      border-color: $brand-warning
+    &-icon
+      position: absolute
+      top: 0
+      left: 0
+      .td-icon
+        width: 28px
+        height: 28px
+        background-position: left
+  &-left-header
+    border-right-color: inherit !important
+
+.d-table
+  display: table
+  width: 100%
+  .cell
+    display: table-cell

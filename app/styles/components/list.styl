@@ -1,0 +1,83 @@
+.list
+  background: $white
+  padding: 0 10px
+  margin-bottom: 10px
+  &-badges
+    span
+      padding: $list-space
+      &:first-child
+        padding-left: 0
+
+  &-empty
+    margin: ($list-space * 3) ($list-space * 2)
+
+  &-col
+    padding-left: $list-space
+    padding-right: $list-space
+
+  &-row
+    margin: $list-space
+    .header
+      border-bottom: 1px solid $table-border-color
+      font-size: 20px
+      padding: 12px 0
+      margin: 0 0 15px
+    &-item
+      position: relative
+      background: $white
+      padding: 0
+      margin: $list-space 0
+      border: 1px solid $table-border-color
+      .item-echar > div
+        display: block !important
+        margin: 0 auto
+        > div
+          z-index: $zindex-navbar - 20
+      .wrap
+        height: 170px
+        position: relative
+        .tip
+          absolute: top 1px left 1px
+          font-size: 14px
+          color: $white
+          > div
+            padding: 6px 10px
+            border-radius: 0
+
+      .info
+        padding: 0 10px
+        position: relative
+        > div
+          line-height: 1.5
+        .normal
+          font-size: 16px
+          font-weight: normal
+          padding-top: 5px
+        .tip
+          absolute: top 5px left 5px
+          font-size: 16px
+          padding: 0 8px
+          background: $brand-warning
+          color: $white
+      .footer
+        position: absolute
+        left: 2%
+        bottom: 0
+        right: 2%
+        border-top: 1px solid $table-border-color
+        text-align: center
+        padding: 5px 0
+        font-size: 14px
+        z-index: $zindex-navbar
+    .desc
+      .marquee
+        margin-left: 70px
+      &-info
+        height: 120px
+        .btn
+          border-color: $brand-success
+
+.label-c
+  display: inline-block
+  width: 85px
+  text-align: right

@@ -1,0 +1,18 @@
+h1
+h2
+h3
+.h1
+.h2
+.h3
+  margin-top: ($line-height-computed / 2)
+
+.control
+  &-label
+    font-size: $font-size-h4
+    font-weight: normal
+    &.required
+      &:after
+        content: " \2022"
+        color: $state-danger-text
+        font-size: 1.3em
+        line-height: 1
