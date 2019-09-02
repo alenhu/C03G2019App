@@ -9,13 +9,13 @@ const {
   pkg
 } = config;
 
-gulp.task('nodemon', ['init'], () => {
+gulp.task('nodemon', gulp.series('init', (done) => {
   $.nodemon({
     exec: 'babel-node',
     script: pkg.main,
     watch: [
       `${dir.backend}/`,
-      `./`,
+      './',
       `${dir.config}/`
     ],
     ext: 'js',
@@ -23,9 +23,10 @@ gulp.task('nodemon', ['init'], () => {
       NODE_ENV: 'development'
     }
   });
-});
+  done();
+}));
 
-gulp.task('nodemon-debug', ['init'], () => {
+gulp.task('nodemon-debug', gulp.series('init', (done) => {
   const devConfig = config.dev;
   const portDebug = devConfig.port.http + 2000;
 
@@ -41,14 +42,15 @@ gulp.task('nodemon-debug', ['init'], () => {
       NODE_ENV: 'development'
     }
   });
-});
+  done();
+}));
 
-gulp.task('serve', [
+gulp.task('serve', gulp.series(
   'nodemon',
   'webpack-dev-server'
-]);
+));
 
-gulp.task('serve-debug', [
+gulp.task('serve-debug', gulp.series(
   'nodemon-debug',
   'webpack-dev-server'
-]);
+));

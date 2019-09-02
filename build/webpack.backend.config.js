@@ -47,7 +47,9 @@ export default {
         options: {
           plugins: [
             'syntax-dynamic-import',
-            'dynamic-import-node'
+            'syntax-object-rest-spread',
+            'dynamic-import-node',
+            'transform-object-rest-spread'
           ]
         }
       }

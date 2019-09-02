@@ -12,7 +12,7 @@ import {
   HotModuleReplacementPlugin
 } from 'webpack';
 import BuildNotifierPlugin from 'webpack-build-notifier';
-
+// import { VueLoaderPlugin } from 'vue-loader';
 import webpackConfig from './webpack.frontend.config';
 import pkg from '../package.json';
 
@@ -24,7 +24,7 @@ import pkg from '../package.json';
 process.env.NODE_ENV = 'development';
 
 const config = webpackConfig(true);
-
+config.mode = process.env.NODE_ENV = 'development';
 each(config.entry, (entry) => {
   entry.unshift(
     'webpack-dev-server/client?/',

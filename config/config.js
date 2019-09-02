@@ -10,11 +10,11 @@ export default {
     passphrase: undefined
   },
   mongo: {
-    host: 'localhost',
+    host: '192.168.66.20',
     port: '27017',
     user: 'root',
     pwd: 'root1234',
-    db: 'smartbankserver',
+    db: 'smartClass',
     options: {
       server: {
         poolSize: 1,
@@ -26,10 +26,10 @@ export default {
     }
   },
   redis: {
-    host: 'localhost',
+    host: '192.168.1.180',
     port: '6379',
     auth: 'root1234',
-    db: 1
+    db: 10
   },
   cookie: {
     secure: false, // cookie secure 属性

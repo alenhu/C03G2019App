@@ -68,13 +68,16 @@ export default (isDev) => {
                   ],
                   stylus: [
                     'vue-style-loader',
+                    'style-loader',
                     {
                       loader: 'css-loader',
                       options: { sourceMap: isDev }
                     },
                     {
                       loader: 'postcss-loader',
-                      options: { sourceMap: isDev }
+                      options: {
+                        sourceMap: isDev
+                      }
                     },
                     'stylus-loader'
                   ]
@@ -91,6 +94,17 @@ export default (isDev) => {
             babelLoader
           ].concat(isDev ? [eslintLoader] : [])
         },
+        // {
+        //   test: /\.css$/,
+        //   use: [
+        //     'vue-style-loader',
+        //     'style-loader',
+        //     {
+        //       loader: 'css-loader',
+        //       options: { sourceMap: isDev }
+        //     }
+        //   ]
+        // },
         {
           test: /\.css$/,
           use: [
@@ -101,7 +115,9 @@ export default (isDev) => {
             },
             {
               loader: 'postcss-loader',
-              options: { sourceMap: isDev }
+              options: {
+                sourceMap: isDev
+              }
             }
           ]
         },

@@ -21,6 +21,7 @@ import log from 'fancy-log';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 
+
 import pkg from '../package.json';
 
 const config = {};

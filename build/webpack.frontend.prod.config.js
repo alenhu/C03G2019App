@@ -19,7 +19,7 @@ import pkg from '../package.json';
 process.env.NODE_ENV = 'production';
 
 const config = webpackConfig();
-
+config.mode = process.env.NODE_ENV = 'production';
 config.output.filename = '[name]-[hash:8].js';
 config.output.chunkFilename = '[chunkhash:8].js';
 

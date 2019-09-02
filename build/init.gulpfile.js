@@ -23,7 +23,6 @@ gulp.task('lint:backend', () =>
     }))
     .pipe($.eslint.format())
     .pipe($.eslint.failAfterError())
-    .pipe($.if(file => file.eslint && file.eslint.fixed, gulp.dest('.')))
-);
+    .pipe($.if(file => file.eslint && file.eslint.fixed, gulp.dest('.'))));
 
-gulp.task('init', ['mkdir', 'lint:backend']);
+gulp.task('init', gulp.series(['mkdir', 'lint:backend']));

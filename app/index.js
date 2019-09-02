@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import vueOptionEvents from 'vue-option-events';
 import Element from 'element-ui';
+// eslint-disable-next-line import/extensions
 import 'element-ui/lib/theme-chalk/index.css';
 
 import {

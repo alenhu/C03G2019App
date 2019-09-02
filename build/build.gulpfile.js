@@ -33,16 +33,16 @@ gulp.task('copy', () => gulp.src([
 ])
   .pipe(gulp.dest(dir.distPkg)));
 
-gulp.task('copy-env', ['copy'], () => gulp.src([
+gulp.task('copy-env', gulp.series('copy', () => gulp.src([
   `${dir.configEnv}/**/*.*`,
   `!${dir.configEnv}/**/*.js`
 ])
-  .pipe(gulp.dest(`${dir.distPkg}/config`)));
+  .pipe(gulp.dest(`${dir.distPkg}/config`))));
 
 // 安装运行依赖的 node_modules
-gulp.task('node-modules', ['copy'], $.shell.task([
+gulp.task('node-modules', gulp.series('copy', $.shell.task([
   `cd ${dir.distPkg} && npm install -d --production`
-]));
+])));
 
 gulp.task('gzip', () =>
   gulp.src([
@@ -57,7 +57,7 @@ gulp.task('gzip', () =>
     }))
     .pipe(gulp.dest(dir.dist)));
 
-gulp.task('building', () => $.runSequence(
+gulp.task('building', gulp.series(
   'clean',
   'init',
   'html',

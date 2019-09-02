@@ -1,7 +1,8 @@
 import { resolve } from 'path';
 import ReadPreference from 'mongodb/lib/core/topologies/read_preference';
 
-const env = process.env;
+
+const { env } = process;
 
 export default {
   port: {

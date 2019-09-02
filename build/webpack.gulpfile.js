@@ -14,7 +14,7 @@ const {
   dir
 } = config;
 
-gulp.task('webpack-dev-server', ['init'], (done) => {
+gulp.task('webpack-dev-server', gulp.series('init', (done) => {
   import('./webpack.frontend.dev.config')
     .then((webpackFrontendDevConfig) => {
       webpackFrontendDevConfig = webpackFrontendDevConfig.default;
@@ -58,7 +58,7 @@ gulp.task('webpack-dev-server', ['init'], (done) => {
       });
     })
     .catch(done);
-});
+}));
 
 gulp.task('webpack-frontend', () =>
   import('./webpack.frontend.prod.config')
@@ -70,10 +70,9 @@ gulp.task('webpack-frontend', () =>
         maxModules: 5,
         optimizationBailout: true
       }));
-    })
-);
+    }));
 
-gulp.task('html', ['webpack-frontend'], () => import('./webpack.frontend.prod.config')
+gulp.task('html', gulp.series('webpack-frontend', () => import('./webpack.frontend.prod.config')
   .then((webpackFrontendProdConfig) => {
     webpackFrontendProdConfig = webpackFrontendProdConfig.default;
     const webpackEntries = webpackFrontendProdConfig.entry;
@@ -114,10 +113,8 @@ gulp.task('html', ['webpack-frontend'], () => import('./webpack.frontend.prod.co
           minifyJS: true,
           minifyCSS: true
         }))
-        .pipe(gulp.dest(`${dir.distPkg}/${dir.frontend}`))
-      );
-  })
-);
+        .pipe(gulp.dest(`${dir.distPkg}/${dir.frontend}`)));
+  })));
 
 gulp.task('webpack-backend', () =>
   $.webpack(webpackBackendConfig)
@@ -127,5 +124,4 @@ gulp.task('webpack-backend', () =>
         colors: true,
         maxModules: 5
       }));
-    })
-);
+    }));
