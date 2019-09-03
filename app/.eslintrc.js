@@ -22,6 +22,7 @@ module.exports = {
   rules: {
     'object-shorthand': [2, 'always', { ignoreConstructors: false }],
     'spaced-comment': 0,
+     'no-console':0,
     'import/no-extraneous-dependencies': 0,
     'import/no-named-as-default': 0,
     'import/extensions': [2, 'always', {

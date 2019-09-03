@@ -16,7 +16,7 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   console.log('beforeEach222222222222');
   if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-    window.location.href = './m_index.html#/';
+    window.location.href = '../mobile/m_index.html#/';
     return;
   }
   next();

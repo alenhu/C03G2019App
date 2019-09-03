@@ -31,7 +31,9 @@ const redisClient = redis(config.redis);
 const appName = upperCamelCase(config.app.name);
 
 // Set default node environment to production
-process.env.NODE_ENV = process.env.NODE_ENV || 'production';
+if (!process.env.NODE_ENV) {
+  process.env.NODE_ENV = 'production';
+}
 
 async function createServer() {
   try {

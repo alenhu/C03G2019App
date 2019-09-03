@@ -38,3 +38,7 @@ dist
 
 # IDE configs
 .idea
+
+yarn.lock
+
+package-lock.json

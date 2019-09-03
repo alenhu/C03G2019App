@@ -76,7 +76,7 @@ gulp.task('html', gulp.series('webpack-frontend', () => import('./webpack.fronte
   .then((webpackFrontendProdConfig) => {
     webpackFrontendProdConfig = webpackFrontendProdConfig.default;
     const webpackEntries = webpackFrontendProdConfig.entry;
-
+    console.log('webpackEntries', webpackEntries);
     const entry = keys(webpackEntries).join('|');
     const entryRegExp = new RegExp(`(${entry})\\-(\\S+?)\\.js$`);
     const scriptRegExp = new RegExp(`/?(${entry})\\.js`);
@@ -84,8 +84,11 @@ gulp.task('html', gulp.series('webpack-frontend', () => import('./webpack.fronte
       .then(files => transform(
         files,
         (result, file) => {
+          console.log('@@@@@@@@@@@@@@@@@@@', result, '###################', file);
           const matches = entryRegExp.exec(file);
+          console.log('@@@@@@@@@@@@@@@@@@@matches', matches);
           if (matches && matches[1] && matches[2]) {
+            console.log('@@@@@@@@@@@@@@@111@@@@', result, '#############222######', file);
             result[matches[1]] = matches[2];
           }
         }
@@ -93,9 +96,10 @@ gulp.task('html', gulp.series('webpack-frontend', () => import('./webpack.fronte
       .then(bundleNames => gulp.src([
         `${dir.frontend}/**/*.html`
       ])
-        .pipe($.replace(scriptRegExp, ($0, $1) => (
-          `/${$1}-${bundleNames[$1]}.js`
-        )))
+        .pipe($.replace(scriptRegExp, ($0, $1) => {
+          console.log('@@@@@@@@@@@@@@@@@@@', $0, ',', $1, '@', `/${$1}-${bundleNames[$1]}.js`);
+          return `/${$1}-${bundleNames[$1]}.js`;
+        }))
         .pipe($.replace('@@build.name', config.pkg.name))
         .pipe($.replace('@@build.version', config.pkg.version))
         .pipe($.htmlmin({

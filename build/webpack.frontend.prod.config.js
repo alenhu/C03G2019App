@@ -52,11 +52,11 @@ config.plugins = (config.plugins || []).concat([
   new optimize.MinChunkSizePlugin({
     minChunkSize: 30 * 1024
   }),
-  new optimize.CommonsChunkPlugin({
-    async: 'vendor',
-    children: true,
-    minChunks: 3
-  }),
+  // new optimize.CommonsChunkPlugin({
+  //   async: 'vendor',
+  //   children: true,
+  //   minChunks: 3
+  // }),
   new optimize.ModuleConcatenationPlugin()
   // new optimize.AggressiveMergingPlugin({
   //   minSizeReduce: 1.5

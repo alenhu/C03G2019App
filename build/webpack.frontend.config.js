@@ -16,14 +16,15 @@ import gulpConfig from './config.gulpfile';
 const { dir } = gulpConfig;
 const PAGE_PATH = resolve(__dirname, '../app/framework');
 function entries() {
-  const entryFiles = glob.sync(`${PAGE_PATH }/*/*.js`);
-  const map = {};
+  const entryFiles = glob.sync(`${PAGE_PATH}/*/*.js`);
+  const maps = {};
   entryFiles.forEach((filePath) => {
-    const filename = filePath.substring(filePath.lastIndexOf('\/') + 1, filePath.lastIndexOf('.'));
-    map[filename] = filePath;
+    const filename = filePath.substring(filePath.lastIndexOf('/') + 1, filePath.lastIndexOf('.'));
+    maps[filename] = filePath;
   });
-  console.log('entrier ', map);
-  return map;
+  // console.log('entrier ', maps);
+  maps.app = resolve(__dirname, '../app/index.html');
+  return maps;
 }
 export default (isDev) => {
   const eslintLoader = {
@@ -43,7 +44,7 @@ export default (isDev) => {
   return {
     externals: {
     },
-    entry: entries,
+    entry: entries(),
     // {
     //   // app: [resolve(__dirname, `../${dir.frontend}`)]
     // },
@@ -105,6 +106,10 @@ export default (isDev) => {
           use: [
             babelLoader
           ].concat(isDev ? [eslintLoader] : [])
+        },
+        {
+          test: /\.html$/,
+          loader: 'html-loader'
         },
         // {
         //   test: /\.css$/,

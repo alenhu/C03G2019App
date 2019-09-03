@@ -1,6 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import {
-  each,
   assign,
   transform,
   snakeCase,
@@ -25,13 +24,6 @@ process.env.NODE_ENV = 'development';
 
 const config = webpackConfig(true);
 config.mode = process.env.NODE_ENV = 'development';
-each(config.entry, (entry) => {
-  entry.unshift(
-    'webpack-dev-server/client?/',
-    'webpack/hot/dev-server'
-  );
-});
-
 config.output.filename = '[name].js';
 config.output.chunkFilename = '[id].js';
 

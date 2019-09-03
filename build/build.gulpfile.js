@@ -20,8 +20,11 @@ gulp.task('babel-config-env', () => gulp.src([
 ])
   .pipe($.babel({
     plugins: [
+      'transform-es2015-modules-commonjs',
       'syntax-dynamic-import',
-      'dynamic-import-node'
+      'dynamic-import-node',
+      'syntax-object-rest-spread',
+      'transform-object-rest-spread'
     ]
   }))
   .pipe(gulp.dest(`${dir.distPkg}/${dir.config}`)));
